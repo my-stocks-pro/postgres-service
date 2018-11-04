@@ -1,4 +1,4 @@
-package service
+package database
 
 //func (p *TypePSQL) MakeMigrations(connection *gorm.DB) {
 //	migrate := os.Getenv("MIGRATE")

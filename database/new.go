@@ -1,16 +1,23 @@
-package service
+package database
 
 import (
 	"github.com/jinzhu/gorm"
-	_ "github.com/jinzhu/gorm/dialects/postgres"
 	"fmt"
 )
+
+type Persist interface {
+	NewClient() (Conn, error)
+}
+
+type DB struct {
+
+}
 
 type Conn struct {
 	Postgres *gorm.DB
 }
 
-func (s Service) Client(c Config) (Conn, error) {
+func (d DB) NewClient() (Conn, error) {
 	connStr := fmt.Sprintf("sslmode=disable host=%s port=%s dbname=%s user=%s password=%s",
 		c.HOST, c.PORT, c.NAME, c.USER, c.PASS)
 

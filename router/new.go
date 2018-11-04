@@ -12,4 +12,6 @@ type Mux struct {
 	Router *mux.Router
 }
 
-
+func (s Mux) NewRouter() (Mux, error) {
+	return Mux{Router: mux.NewRouter()}, nil
+}

@@ -2,35 +2,36 @@ package service
 
 import (
 	"github.com/my-stocks-pro/postgres-service/router"
+	"github.com/my-stocks-pro/postgres-service/database"
 )
 
 type Service struct {
-	Conn
+	DB     database.Conn
 	Router router.Mux
 }
 
 func New() Service {
-	return Service{}
+	return Service{
+		DB:
+	}
 }
 
-func InitDB(p Persist) (Conn, error) {
-	conf, err := p.Init()
-	if err != nil {
-		panic(err)
-	}
 
-	conn, err := p.Client(conf)
-	if err != nil {
-		panic(err)
-	}
 
-	return conn, nil
-}
 
-func InitRouter(r router.Dialer) (router.Mux, error) {
-	mux, err := r.NewRouter()
-	if err != nil {
-		return router.Mux{}, err
-	}
-	return mux, nil
-}
+//func InitDB(p database.DB) (database.Conn, error) {
+//	conn, err := p.Client()
+//	if err != nil {
+//		panic(err)
+//	}
+//
+//	return conn, nil
+//}
+//
+//func InitRouter(r router.Dialer) (router.Mux, error) {
+//	mux, err := r.NewRouter()
+//	if err != nil {
+//		return router.Mux{}, err
+//	}
+//	return mux, nil
+//}
