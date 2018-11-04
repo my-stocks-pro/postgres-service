@@ -1,8 +1,12 @@
 package service
 
+import (
+	"github.com/my-stocks-pro/postgres-service/router"
+)
 
 type Service struct {
 	Conn
+	Router router.Mux
 }
 
 func New() Service {
@@ -21,4 +25,12 @@ func InitDB(p Persist) (Conn, error) {
 	}
 
 	return conn, nil
+}
+
+func InitRouter(r router.Dialer) (router.Mux, error) {
+	mux, err := r.NewRouter()
+	if err != nil {
+		return router.Mux{}, err
+	}
+	return mux, nil
 }

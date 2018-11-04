@@ -10,10 +10,14 @@ func main() {
 
 	srv := service.New()
 
+	service.InitRouter(srv)
+
 	db, err := service.InitDB(srv)
 	if err != nil {
 		panic(err)
 	}
+
+
 
 	fmt.Println(db.Postgres)
 
