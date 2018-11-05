@@ -3,22 +3,19 @@ package main
 import (
 	"fmt"
 	"github.com/my-stocks-pro/postgres-service/service"
+	"github.com/my-stocks-pro/postgres-service/config"
 )
 
 func main() {
 	fmt.Println("POSTGRES")
 
-	srv := service.New()
-
-	service.InitRouter(srv)
-
-	db, err := service.InitDB(srv)
+	config, err := config.New().Load()
 	if err != nil {
-		panic(err)
+		fmt.Println(err)
 	}
 
+	srv := service.New()
 
 
-	fmt.Println(db.Postgres)
 
 }
