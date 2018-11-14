@@ -2,20 +2,25 @@ package main
 
 import (
 	"fmt"
-	"github.com/my-stocks-pro/postgres-service/service"
-	"github.com/my-stocks-pro/postgres-service/config"
+	"github.com/my-stocks-pro/postgres-service/router"
 )
 
 func main() {
 	fmt.Println("POSTGRES")
+	//
+	//config, err := config.New().Load()
+	//if err != nil {
+	//	fmt.Println(err)
+	//}
+	//
+	//fmt.Println(config)
 
-	config, err := config.New().Load()
-	if err != nil {
-		fmt.Println(err)
-	}
+	//srv := service.New()
 
-	srv := service.New()
+	router := router.New()
 
 
+
+	fmt.Println("SUCCESS")
 
 }
