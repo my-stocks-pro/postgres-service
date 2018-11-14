@@ -6,14 +6,19 @@ import (
 )
 
 type Persist interface {
-	NewClient() (Conn, error)
+	NewClient() Session
 }
 
-type Conn struct {
+type Session struct {
 	Postgres *gorm.DB
 }
 
-func (с Conn) NewClient() (Conn, error) {
+func NewSession() Session {
+	return Session{}
+}
+
+
+func (с Session) NewClient() Session {
 	connStr := fmt.Sprintf("sslmode=disable host=%s port=%s dbname=%s user=%s password=%s",
 		c.HOST, c.PORT, c.NAME, c.USER, c.PASS)
 

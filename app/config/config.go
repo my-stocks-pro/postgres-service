@@ -3,7 +3,7 @@ package config
 import "os"
 
 type Config interface {
-	Load() (TypeConfig, error)
+	LoadConfig() TypeConfig
 }
 
 type TypeConfig struct {
@@ -14,16 +14,16 @@ type TypeConfig struct {
 	PASS string
 }
 
-func (c TypeConfig) Load() (TypeConfig, error) {
+func NewConfig() TypeConfig {
+	return TypeConfig{}
+}
+
+func (c TypeConfig) LoadConfig() TypeConfig {
 	return TypeConfig{
 		HOST: os.Getenv("HOST"),
 		PORT: os.Getenv("PORT"),
 		NAME: os.Getenv("NAME"),
 		USER: os.Getenv("USER"),
 		PASS: os.Getenv("PASS"),
-	}, nil
-}
-
-func New() TypeConfig {
-	return TypeConfig{}
+	}
 }

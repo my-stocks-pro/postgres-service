@@ -3,18 +3,20 @@ package service
 import (
 	"github.com/my-stocks-pro/postgres-service/router"
 	"github.com/my-stocks-pro/postgres-service/database"
+	"github.com/my-stocks-pro/postgres-service/app"
 )
 
 type Srvice interface {
-
 }
-
 
 type TypeService struct {
-	DB     database.Conn
-	Router router.Mux
+	app    app.TypeApp
+	router router.TypeRouter
+	db     database.Session
 }
 
-func New() TypeService {
-	return TypeService{}
+func NewService(app app.App, router router.Router, db database.Persist) TypeService {
+	return TypeService{
+		app: app.InitApp()
+	}
 }
