@@ -14,19 +14,18 @@ const (
 )
 
 type Logger interface {
-	InitLogger() TypeLogger
+	InitLogger() (TypeLogger, error)
 }
 
 type TypeLogger struct {
 	Log *zap.Logger
 }
 
-func (l TypeLogger) InitLogger() TypeLogger {
+func (l TypeLogger) InitLogger() (TypeLogger, error) {
 	filename := fmt.Sprintf("%s/%s_%s_%s.log", logPath, logPrefix, logFile, time.Now().Format("2006-01-02_15:04"))
 	_, err := os.Create(filename)
 	if err != nil {
-		fmt.Fprintf(os.Stderr, "Creation of log file errored!")
-		os.Exit(1)
+		return TypeLogger{}, err
 	}
 
 	conf := zap.NewDevelopmentConfig()
@@ -36,14 +35,12 @@ func (l TypeLogger) InitLogger() TypeLogger {
 
 	zapLog, err := conf.Build()
 	if err != nil {
-		fmt.Println(err)
+		return TypeLogger{}, err
 	}
 
 	defer zapLog.Sync()
 
-	zapLog.Info("Logger successful initialization")
-
-	return TypeLogger{Log: zapLog}
+	return TypeLogger{Log: zapLog}, nil
 }
 
 func NewLogger() TypeLogger {

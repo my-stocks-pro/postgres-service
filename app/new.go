@@ -18,9 +18,19 @@ func NewApp() TypeApp {
 	return TypeApp{}
 }
 
-func (a TypeApp) InitApp(c config.Config, l logger.Logger) TypeApp {
-	return TypeApp{
-		Config: c.LoadConfig(),
-		Logger: l.InitLogger(),
+func (a TypeApp) InitApp(c config.Config, l logger.Logger) (TypeApp, error) {
+	conf, err := c.LoadConfig()
+	if err != nil {
+		return TypeApp{}, nil
 	}
+
+	log, err := l.InitLogger()
+	if err != nil {
+		return TypeApp{}, nil
+	}
+
+	return TypeApp{
+		Config: conf,
+		Logger: log,
+	}, nil
 }

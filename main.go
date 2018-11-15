@@ -10,13 +10,15 @@ import (
 	"github.com/my-stocks-pro/postgres-service/app/logger"
 )
 
+const ServiceName = "postgres-service"
+
 func main() {
 	fmt.Println("POSTGRES")
 
-	conf := config.NewConfig()
-	log := logger.NewLogger()
-
-	a := app.NewApp().InitApp(conf, log)
+	a, err := app.NewApp().InitApp(config.NewConfig(), logger.NewLogger())
+	if err != nil {
+		a.Logger.Log.Error(err.Error())
+	}
 
 	db, err := database.NewSession(a).NewClient()
 	if err != nil {
@@ -26,8 +28,7 @@ func main() {
 	r := router.NewRouter(a, db).InitMux()
 
 	s := service.NewService(r)
-
-	fmt.Println("SUCCESS")
+	a.Logger.Log.Info(s.Server.Addr)
 
 	if err := s.Server.ListenAndServe(); err != nil {
 		s.App.Logger.Log.Error(err.Error())
