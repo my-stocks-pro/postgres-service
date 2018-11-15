@@ -2,21 +2,27 @@ package service
 
 import (
 	"github.com/my-stocks-pro/postgres-service/router"
-	"github.com/my-stocks-pro/postgres-service/database"
 	"github.com/my-stocks-pro/postgres-service/app"
+	"net/http"
+	"time"
 )
 
-type Srvice interface {
-}
+//type Srvice interface {
+//	Server *http.Se
+//}
 
 type TypeService struct {
-	app    app.TypeApp
-	router router.TypeRouter
-	db     database.Session
+	Server *http.Server
+	App    app.TypeApp
 }
 
-func NewService(app app.App, router router.Router, db database.Persist) TypeService {
+func NewService(router router.TypeRouter) TypeService {
 	return TypeService{
-		app: app.InitApp()
+		Server: &http.Server{
+			Handler: router.Router,
+			Addr:    "127.0.0.1:8000",
+			WriteTimeout: 15 * time.Second,
+			ReadTimeout:  15 * time.Second,
+		},
 	}
 }

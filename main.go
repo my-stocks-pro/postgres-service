@@ -6,19 +6,30 @@ import (
 	"github.com/my-stocks-pro/postgres-service/router"
 	"github.com/my-stocks-pro/postgres-service/service"
 	"github.com/my-stocks-pro/postgres-service/database"
+	"github.com/my-stocks-pro/postgres-service/app/config"
+	"github.com/my-stocks-pro/postgres-service/app/logger"
 )
 
 func main() {
 	fmt.Println("POSTGRES")
 
-	a := app.NewApp()
+	conf := config.NewConfig()
+	log := logger.NewLogger()
 
-	r := router.NewRouter()
+	a := app.NewApp().InitApp(conf, log)
 
-	db := database.NewSession()
+	db, err := database.NewSession(a).NewClient()
+	if err != nil {
+		a.Logger.Log.Error(err.Error())
+	}
 
-	srv := service.NewService(a, r, db)
+	r := router.NewRouter(a, db).InitMux()
+
+	s := service.NewService(r)
 
 	fmt.Println("SUCCESS")
 
+	if err := s.Server.ListenAndServe(); err != nil {
+		s.App.Logger.Log.Error(err.Error())
+	}
 }

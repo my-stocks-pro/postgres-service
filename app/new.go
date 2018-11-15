@@ -10,17 +10,17 @@ type App interface {
 }
 
 type TypeApp struct {
-	config config.TypeConfig
-	log    logger.TypeLogger
+	Config config.TypeConfig
+	Logger logger.TypeLogger
 }
 
 func NewApp() TypeApp {
 	return TypeApp{}
 }
 
-func (a TypeApp) InitApp(c config.Config, l logger.Logger) *TypeApp {
-	return &TypeApp{
-		config: c.LoadConfig(),
-		log:    l.InitLogger(),
+func (a TypeApp) InitApp(c config.Config, l logger.Logger) TypeApp {
+	return TypeApp{
+		Config: c.LoadConfig(),
+		Logger: l.InitLogger(),
 	}
 }

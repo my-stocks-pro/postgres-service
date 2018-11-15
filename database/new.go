@@ -2,38 +2,43 @@ package database
 
 import (
 	"github.com/jinzhu/gorm"
+	_ "github.com/jinzhu/gorm/dialects/postgres"
 	"fmt"
+	"github.com/my-stocks-pro/postgres-service/app"
 )
 
 type Persist interface {
-	NewClient() Session
+	NewClient() (Session, error)
 }
 
 type Session struct {
 	Postgres *gorm.DB
+	App app.TypeApp
 }
 
-func NewSession() Session {
-	return Session{}
+func NewSession(a app.TypeApp) Session {
+	return Session{
+		App: a,
+	}
 }
 
-
-func (с Session) NewClient() Session {
+func (s Session) NewClient() (Session, error) {
 	connStr := fmt.Sprintf("sslmode=disable host=%s port=%s dbname=%s user=%s password=%s",
-		c.HOST, c.PORT, c.NAME, c.USER, c.PASS)
+		s.App.Config.HOST, s.App.Config.PORT, s.App.Config.NAME, s.App.Config.USER, s.App.Config.PASS)
 
 	connection, err := gorm.Open("postgres", connStr)
 	if err != nil {
-		return Conn{}, err
+		return Session{}, err
 	}
 
 	err = connection.DB().Ping()
 	if err != nil {
-		return Conn{}, err
+		return Session{}, err
 	}
+
+	s.Postgres = connection
 
 	//p.MakeMigrations(connection)
 
-	return Conn{Postgres: connection}, nil
-
+	return s, nil
 }
