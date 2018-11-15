@@ -12,7 +12,7 @@ type Persist interface {
 }
 
 type Session struct {
-	Postgres *gorm.DB
+	Client *gorm.DB
 	App app.TypeApp
 }
 
@@ -36,9 +36,9 @@ func (s Session) NewClient() (Session, error) {
 		return Session{}, err
 	}
 
-	s.Postgres = connection
+	s.Client = connection
 
-	//p.MakeMigrations(connection)
+	s.MakeMigrations(connection)
 
 	return s, nil
 }

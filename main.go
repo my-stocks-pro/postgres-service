@@ -1,20 +1,17 @@
 package main
 
 import (
-	"fmt"
 	"github.com/my-stocks-pro/postgres-service/app"
+	"github.com/my-stocks-pro/postgres-service/app/config"
+	"github.com/my-stocks-pro/postgres-service/app/logger"
 	"github.com/my-stocks-pro/postgres-service/router"
 	"github.com/my-stocks-pro/postgres-service/service"
 	"github.com/my-stocks-pro/postgres-service/database"
-	"github.com/my-stocks-pro/postgres-service/app/config"
-	"github.com/my-stocks-pro/postgres-service/app/logger"
 )
 
 const ServiceName = "postgres-service"
 
 func main() {
-	fmt.Println("POSTGRES")
-
 	a, err := app.NewApp().InitApp(config.NewConfig(), logger.NewLogger())
 	if err != nil {
 		a.Logger.Log.Error(err.Error())

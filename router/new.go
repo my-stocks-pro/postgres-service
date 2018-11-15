@@ -27,22 +27,10 @@ func NewRouter(app app.TypeApp, db database.Session) TypeRouter {
 }
 
 func (r TypeRouter) InitMux() TypeRouter {
-	r.Router.HandleFunc("/version", r.HandlerVersion).Methods(http.MethodGet)
 	r.Router.HandleFunc("/health", r.HandlerHealth).Methods(http.MethodGet)
-	r.Router.HandleFunc("/get", r.TestGET).Methods(http.MethodGet)
+
+	r.Router.HandleFunc("/postgres", r.Save).Methods(http.MethodPost)
+	r.Router.HandleFunc("/postgres", r.Select).Methods(http.MethodGet)
 
 	return TypeRouter{Router: r.Router}
-}
-
-func (r TypeRouter) HandlerVersion(w http.ResponseWriter, req *http.Request) {
-	w.Write([]byte("HandlerVersion"))
-}
-
-func (r TypeRouter) HandlerHealth(w http.ResponseWriter, req *http.Request) {
-	w.Write([]byte("HandlerHealth"))
-}
-
-func (r TypeRouter) TestGET(w http.ResponseWriter, req *http.Request) {
-
-
 }

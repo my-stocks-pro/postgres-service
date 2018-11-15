@@ -7,10 +7,6 @@ import (
 	"time"
 )
 
-//type Srvice interface {
-//	Server *http.Se
-//}
-
 type TypeService struct {
 	Server *http.Server
 	App    app.TypeApp
@@ -19,8 +15,8 @@ type TypeService struct {
 func NewService(router router.TypeRouter) TypeService {
 	return TypeService{
 		Server: &http.Server{
-			Handler: router.Router,
-			Addr:    "127.0.0.1:8000",
+			Handler:      router.Router,
+			Addr:         "127.0.0.1:8000",
 			WriteTimeout: 15 * time.Second,
 			ReadTimeout:  15 * time.Second,
 		},

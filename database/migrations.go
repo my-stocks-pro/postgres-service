@@ -1,17 +1,14 @@
 package database
 
-//func (p *TypePSQL) MakeMigrations(connection *gorm.DB) {
-//	migrate := os.Getenv("MIGRATE")
-//
-//	if migrate == "1" {
-//		fmt.Println("Migrate")
-//
-//		connection.AutoMigrate(
-//			&models.Approve{},
-//			&models.Earnings{}, )
-//
-//		//connection.AutoMigrate()
-//
-//		fmt.Println("Migrations done")
-//	}
-//}
+import (
+	"github.com/jinzhu/gorm"
+	"os"
+	"github.com/my-stocks-pro/postgres-service/database/models"
+)
+
+func (p *Session) MakeMigrations(connection *gorm.DB) {
+	if os.Getenv("MIGRATE") == "1" {
+		connection.AutoMigrate(&models.Approve{}, &models.Earnings{})
+		//connection.AutoMigrate()
+	}
+}
