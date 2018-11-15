@@ -44,7 +44,7 @@ func (r TypeRouter) approvedSelect(body []byte) []byte {
 }
 
 func (r TypeRouter) earningsSelect(body []byte) []byte {
-	earning := 2  models.Earnings{}
+	earning := models.Earnings{}
 	r.DB.Client.Find(&earning)
 	blob, err := json.Marshal(earning)
 	if err != nil {
