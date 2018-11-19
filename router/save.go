@@ -13,14 +13,14 @@ func (r TypeRouter) Save(w http.ResponseWriter, req *http.Request) {
 		w.Write([]byte(err.Error()))
 	}
 
-	switch req.Header.Get("type") {
+	reqType := req.Header.Get("type")
+	switch reqType {
 	case "approved":
 		r.approvedSave(body)
 	case "earnings":
 		r.earningsSave(body)
 	default:
-		w.Header().Set("Content-Type", "application/json")
-		w.Write([]byte("Not allowed type"))
+		w.Write(newResponse(nil, reqType, []byte{}, "Not allowed type"))
 	}
 }
 
