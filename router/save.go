@@ -7,22 +7,6 @@ import (
 	"encoding/json"
 )
 
-func (r TypeRouter) Save(w http.ResponseWriter, req *http.Request) {
-	body, err := ioutil.ReadAll(req.Body)
-	if err != nil {
-		w.Write([]byte(err.Error()))
-	}
-
-	reqType := req.Header.Get("type")
-	switch reqType {
-	case "approved":
-		r.approvedSave(body)
-	case "earnings":
-		r.earningsSave(body)
-	default:
-		w.Write(newResponse(nil, reqType, []byte{}, "Not allowed type"))
-	}
-}
 
 func (r TypeRouter) approvedSave(body []byte) {
 	approved := models.Approve{}

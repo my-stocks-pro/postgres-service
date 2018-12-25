@@ -10,3 +10,4 @@ type Approve struct {
 	Link        string `gorm:"size:1024" json:"link"`
 	Description string `gorm:"size:10240" json:"description"`
 }
+

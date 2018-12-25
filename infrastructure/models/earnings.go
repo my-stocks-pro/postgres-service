@@ -12,3 +12,11 @@ type Earnings struct {
 	Country   string `gorm:"size:100" json:"country"`
 	City      string `gorm:"size:100" json:"city"`
 }
+
+func (e Earnings) Update(client *gorm.DB) error {
+	if err := client.Where("id_i=?", e.IDI).Omit("country", "city").Assign(e).FirstOrCreate(&e).Error; err != nil {
+		return err
+	}
+	return nil
+}
+

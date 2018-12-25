@@ -1,33 +1,64 @@
 package main
 
 import (
-	"github.com/my-stocks-pro/postgres-service/app"
-	"github.com/my-stocks-pro/postgres-service/app/config"
-	"github.com/my-stocks-pro/postgres-service/app/logger"
-	"github.com/my-stocks-pro/postgres-service/router"
-	"github.com/my-stocks-pro/postgres-service/service"
-	"github.com/my-stocks-pro/postgres-service/database"
+	"fmt"
+	"net/http"
+	"os/signal"
+	"os"
+	"time"
+	"context"
+
+	"github.com/my-stocks-pro/postgres-service/infrastructure"
+	"github.com/my-stocks-pro/postgres-service/engine"
 )
 
 const ServiceName = "postgres-service"
 
 func main() {
-	a, err := app.NewApp().InitApp(config.NewConfig(), logger.NewLogger())
+	config := infrastructure.NewConfig()
+
+	logger, err := infrastructure.NewLogger()
 	if err != nil {
-		a.Logger.Log.Error(err.Error())
+		fmt.Println(err)
+		return
 	}
 
-	db, err := database.NewSession(a).NewClient()
+	client, err := infrastructure.NewClient(config)
 	if err != nil {
-		a.Logger.Log.Error(err.Error())
+		logger.Error(err.Error())
+		return
 	}
 
-	r := router.NewRouter(a, db).InitMux()
+	postgres := infrastructure.NewPostgres(config, client)
 
-	s := service.NewService(r)
-	a.Logger.Log.Info(s.Server.Addr)
+	service := engine.New(config, logger, postgres)
 
-	if err := s.Server.ListenAndServe(); err != nil {
-		s.App.Logger.Log.Error(err.Error())
+	service.InitMux()
+
+	serverHTTP := &http.Server{
+		Addr:    config.SPort,
+		Handler: service.Engine,
 	}
+
+	go func() {
+		if err := serverHTTP.ListenAndServe(); err != nil {
+			logger.Error(err.Error())
+		}
+	}()
+
+	signal.Notify(service.QuitOS, os.Interrupt)
+	select {
+	case <-service.QuitOS:
+		logger.Info("Shutdown Postgres server by OS signal...")
+	case <-service.QuitRPC:
+		logger.Info("Shutdown Postgres server by RPC signal...")
+	}
+
+	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+	defer cancel()
+	if err := serverHTTP.Shutdown(ctx); err != nil {
+		logger.Error(fmt.Sprintf("Postgres server Shutdown: %s", err.Error()))
+	}
+
+	logger.Info("Postgres server exiting")
 }
