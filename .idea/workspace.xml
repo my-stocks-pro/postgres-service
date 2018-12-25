@@ -1,39 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="ebb3b23a-13b6-4385-bfa6-3afa95dd3295" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app_log/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/engine/engine.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/engine/new.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/handler/approved.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/handler/default.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/handler/earnings.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/handler/handler.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/handler/health.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/handler/rejected.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/handler/version.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/infrastructure/config.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/infrastructure/logger.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/infrastructure/models/rejected.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/infrastructure/postgres.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/Makefile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/config/config.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/logger/logger.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/new.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/models.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/models/approved.go" beforeDir="false" afterPath="$PROJECT_DIR$/infrastructure/models/approved.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/models/earnings.go" beforeDir="false" afterPath="$PROJECT_DIR$/infrastructure/models/earnings.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/new.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/router/health.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/router/new.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/router/save.go" beforeDir="false" afterPath="$PROJECT_DIR$/router/save.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/router/version.go" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/new.go" beforeDir="false" />
-    </list>
+    <list default="true" id="ebb3b23a-13b6-4385-bfa6-3afa95dd3295" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -130,11 +98,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="earnings.go" pinned="false" current-in-tab="false">
+      <file leaf-file-name="earnings.go" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/handler/earnings.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="507">
-              <caret line="42" column="31" selection-start-line="42" selection-start-column="31" selection-end-line="42" selection-end-column="31" />
+            <state relative-caret-position="326">
+              <caret line="58" selection-start-line="58" selection-end-line="58" />
               <folding>
                 <element signature="e#17#115#0" expanded="true" />
               </folding>
@@ -142,11 +110,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="earnings.go" pinned="false" current-in-tab="true">
+      <file leaf-file-name="earnings.go" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/infrastructure/models/earnings.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="15" column="47" selection-start-line="15" selection-start-column="47" selection-end-line="15" selection-end-column="47" />
+            <state relative-caret-position="330">
+              <caret line="22" selection-start-line="22" selection-end-line="22" />
             </state>
           </provider>
         </entry>
@@ -154,8 +122,8 @@
       <file leaf-file-name="save.go" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/router/save.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="19" column="33" lean-forward="true" selection-start-line="19" selection-start-column="33" selection-end-line="19" selection-end-column="33" />
+            <state relative-caret-position="345">
+              <caret line="23" column="111" lean-forward="true" selection-start-line="23" selection-start-column="4" selection-end-line="23" selection-end-column="111" />
               <folding>
                 <element signature="e#16#129#0" expanded="true" />
               </folding>
@@ -232,8 +200,8 @@
         <option value="$PROJECT_DIR$/main.go" />
         <option value="$PROJECT_DIR$/handler/handler.go" />
         <option value="$PROJECT_DIR$/router/save.go" />
-        <option value="$PROJECT_DIR$/handler/earnings.go" />
         <option value="$PROJECT_DIR$/infrastructure/postgres.go" />
+        <option value="$PROJECT_DIR$/handler/earnings.go" />
         <option value="$PROJECT_DIR$/infrastructure/models/earnings.go" />
       </list>
     </option>
@@ -354,15 +322,14 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="11" />
       <window_info anchor="bottom" id="Event Log" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Database Changes" order="1" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="3" weight="0.32891566" />
-      <window_info anchor="bottom" id="Run" order="7" visible="true" weight="0.32848486" />
-      <window_info anchor="bottom" id="Terminal" order="0" weight="0.32" />
-      <window_info active="true" content_ui="combo" id="Project" order="1" visible="true" weight="0.1881259" />
+      <window_info anchor="bottom" id="Run" order="7" weight="0.32848486" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="0" visible="true" weight="0.32" />
+      <window_info content_ui="combo" id="Project" order="1" visible="true" weight="0.1881259" />
       <window_info anchor="bottom" id="Docker" order="4" show_stripe_button="false" />
       <window_info anchor="right" id="Database" order="0" weight="0.3297568" />
       <window_info id="Structure" order="2" side_tool="true" weight="0.25" />
@@ -657,32 +624,22 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/router/save.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="19" column="33" lean-forward="true" selection-start-line="19" selection-start-column="33" selection-end-line="19" selection-end-column="33" />
-          <folding>
-            <element signature="e#16#129#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/handler/earnings.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="507">
-          <caret line="42" column="31" selection-start-line="42" selection-start-column="31" selection-end-line="42" selection-end-column="31" />
-          <folding>
-            <element signature="e#17#115#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/main.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-3">
           <caret line="29" column="5" lean-forward="true" selection-start-line="29" selection-start-column="5" selection-end-line="29" selection-end-column="5" />
           <folding>
             <element signature="e#14#194#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/router/save.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="23" column="111" lean-forward="true" selection-start-line="23" selection-start-column="4" selection-end-line="23" selection-end-column="111" />
+          <folding>
+            <element signature="e#16#129#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -699,8 +656,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/infrastructure/models/earnings.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" column="47" selection-start-line="15" selection-start-column="47" selection-end-line="15" selection-end-column="47" />
+        <state relative-caret-position="330">
+          <caret line="22" selection-start-line="22" selection-end-line="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/handler/earnings.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="326">
+          <caret line="58" selection-start-line="58" selection-end-line="58" />
+          <folding>
+            <element signature="e#17#115#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
