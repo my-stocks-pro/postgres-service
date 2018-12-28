@@ -4,6 +4,6 @@ RUN mkdir app_log
 
 VOLUME /app_log
 
-ADD redis-service /
+ADD postgres-service /
 
-CMD ./redis-service
+CMD ./postgres-service

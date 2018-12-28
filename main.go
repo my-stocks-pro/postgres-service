@@ -9,29 +9,29 @@ import (
 	"context"
 
 	"github.com/my-stocks-pro/postgres-service/infrastructure"
+	"github.com/my-stocks-pro/postgres-service/infrastructure/postgres"
 	"github.com/my-stocks-pro/postgres-service/engine"
+	"github.com/prometheus/common/log"
 )
-
-const ServiceName = "postgres-service"
 
 func main() {
 	config := infrastructure.NewConfig()
 
 	logger, err := infrastructure.NewLogger()
 	if err != nil {
-		fmt.Println(err)
+		log.Fatal(err)
 		return
 	}
 
-	client, err := infrastructure.NewClient(config)
+	client, err := postgres.NewClient(config)
 	if err != nil {
 		logger.Error(err.Error())
 		return
 	}
 
-	postgres := infrastructure.NewPostgres(config, client)
+	persist := postgres.NewPostgres(config, client)
 
-	service := engine.New(config, logger, postgres)
+	service := engine.New(config, logger, persist)
 
 	service.InitMux()
 

@@ -22,7 +22,7 @@ NEWDEP=$(GODEP) ensure
 AWSECR=848984447616.dkr.ecr.us-east-1.amazonaws.com/$(BIN)
 AWSLOGIN=aws ecr --profile alex get-login --no-include-email --region us-east-1 | sed 's|https://||'
 
-LOGPATH=/Users/alex/go/src/github.com/my-stocks-pro/redis-service/app_log
+LOGPATH=/Users/alex/go/src/github.com/my-stocks-pro/postgres-service/app_log
 
 all: go-build docker-build aws-login docker-push clean
 

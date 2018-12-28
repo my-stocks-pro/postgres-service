@@ -2,6 +2,7 @@ package engine
 
 import (
 	"github.com/my-stocks-pro/postgres-service/infrastructure"
+	"github.com/my-stocks-pro/postgres-service/infrastructure/postgres"
 	"github.com/gin-gonic/gin"
 	"github.com/my-stocks-pro/postgres-service/handler"
 	"os"
@@ -10,7 +11,7 @@ import (
 type Service struct {
 	config   infrastructure.Config
 	logger   infrastructure.Logger
-	postgres infrastructure.Postgres
+	postgres postgres.Postgres
 	handler  map[string]handler.Handler
 	QuitRPC  chan bool
 	QuitTick chan bool
@@ -18,7 +19,7 @@ type Service struct {
 	Engine   *gin.Engine
 }
 
-func New(c infrastructure.Config, l infrastructure.Logger, p infrastructure.Postgres) Service {
+func New(c infrastructure.Config, l infrastructure.Logger, p postgres.Postgres) Service {
 	return Service{
 		config:   c,
 		logger:   l,

@@ -30,7 +30,7 @@ func (v TypeVersion) Handle(c *gin.Context) {
 			"startTime": v.config.StartDate,
 			"currDate":  time.Now().Format("2006-01-02 15:04"),
 			"version":   "1.0",
-			"service":   v.config.Name,
+			"service":   v.config.SName,
 		})
 	default:
 		c.JSON(http.StatusMethodNotAllowed, "Method Not Allowed")

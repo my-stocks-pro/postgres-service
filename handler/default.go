@@ -7,6 +7,7 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/my-stocks-pro/postgres-service/infrastructure"
+	"github.com/my-stocks-pro/postgres-service/infrastructure/postgres"
 )
 
 type Default interface {
@@ -16,7 +17,7 @@ type Default interface {
 type DefaultType struct {
 	config infrastructure.Config
 	logger infrastructure.Logger
-	redis  infrastructure.Postgres
+	redis  postgres.Postgres
 }
 
 func NewDefault(l infrastructure.Logger) DefaultType {

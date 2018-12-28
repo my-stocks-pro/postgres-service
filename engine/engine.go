@@ -3,14 +3,7 @@ package engine
 import (
 	"github.com/my-stocks-pro/postgres-service/handler"
 	"github.com/gin-gonic/gin"
-)
-
-const (
-	version  = "version"
-	health   = "health"
-	earnings = "earnings"
-	approved = "approved"
-	rejected = "rejected"
+	"github.com/my-stocks-pro/postgres-service/infrastructure"
 )
 
 func (s *Service) InitMux() {
@@ -30,16 +23,12 @@ func (s *Service) GetHandler(c *gin.Context) {
 
 func (s *Service) HandlerConstruct(serviceType string) handler.Handler {
 	switch serviceType {
-	case version:
+	case infrastructure.Version:
 		return handler.NewVersion(s.config)
-	case health:
+	case infrastructure.Health:
 		return handler.NewHealth(s.config, s.postgres)
-	case earnings:
-		return handler.NewEarnings(s.config, s.logger, s.postgres)
-	case approved:
-		return handler.NewApproved(s.config, s.logger, s.postgres)
-	case rejected:
-		return handler.NewRejected(s.config, s.logger, s.postgres)
+	case infrastructure.Earnings, infrastructure.Approved, infrastructure.Rejected:
+		return handler.NewCommon(s.config, s.logger, s.postgres)
 	default:
 		return handler.NewDefault(s.logger)
 	}

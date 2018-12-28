@@ -5,6 +5,16 @@ import (
 	"os"
 )
 
+const (
+	Version  = "version"
+	Health   = "health"
+	Earnings = "earnings"
+	Approved = "approved"
+	Rejected = "rejected"
+	logPath   = "app_log"
+	logPrefix = "postgres-service"
+)
+
 type Config struct {
 	StartDate string
 	SName     string

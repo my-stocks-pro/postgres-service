@@ -3,13 +3,9 @@ package infrastructure
 import (
 	"fmt"
 	"os"
+
 	"go.uber.org/zap"
 	"github.com/gin-gonic/gin"
-)
-
-const (
-	logPath   = "app_log"
-	logPrefix = "redis-service"
 )
 
 type Logger interface {
