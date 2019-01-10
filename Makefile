@@ -1,4 +1,5 @@
 BIN=postgres-service
+PSQL=postgres-pinterest
 
 GOOS=linux
 GOARCH=amd64
@@ -20,11 +21,14 @@ GODEP=dep
 NEWDEP=$(GODEP) ensure
 
 AWSECR=848984447616.dkr.ecr.us-east-1.amazonaws.com/$(BIN)
+AWSECRPSQL=848984447616.dkr.ecr.us-east-1.amazonaws.com/$(PSQL)
 AWSLOGIN=aws ecr --profile alex get-login --no-include-email --region us-east-1 | sed 's|https://||'
 
 LOGPATH=/Users/alex/go/src/github.com/my-stocks-pro/postgres-service/app_log
 
 all: go-build docker-build aws-login docker-push clean
+
+postgres: postgres-build aws-login postgres-push
 
 local: go-build docker-build docker-run
 
@@ -53,6 +57,15 @@ docker-run:
 	-v $(LOGPATH):/app_log \
 	-p 9006:9006
 	$(BIN)
+
+postgres-build:
+	@echo "Docker build postgres..."
+	$(DOCKERBUILD) --no-cache -t $(PSQL) - < Dockerfile_psql
+
+postgres-push:
+	@echo "Push Postgres image to AWS ECR..."
+	docker tag $(PSQL):latest $(AWSECRPSQL):latest
+	$(DOCKERPUSH) $(AWSECRPSQL):latest
 
 clean:
 	@echo "Clean"
